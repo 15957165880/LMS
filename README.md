@@ -1,8 +1,37 @@
-# React + Vite
+# LMS_demo
+## Library Management System Demo
+## 图书管理系统
+## https://github.com/15957165880/LMS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### 系统功能说明
+1. 用户（User）和管理员（Admin）可以注册并登录到系统。
 
-Currently, two official plugins are available:
+2. 用户可以查看图书列表，可以借阅多本图书，还可以归还这些图书。
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+3. 管理员有权查看图书列表、添加图书、删除
+
+4. 书如果系统中已经有一本书，并且管理员试图再次添加，则系统应合并库存，而不是创建新的库存。此外，管理员不能删除用户当前正在借阅的图书。
+---
+### 功能细则
+1. 管理员Alice 密码1
+2. 用户Bob 密码2
+3. 已有书籍 罗伯特·C·马丁的《清洁代码》一书添加成功，库存：5本
+4. 管理员可以删除书籍（书籍有外借情况下不能删除）
+5. 管理员可以上架新的书籍
+6. 管理员可以修改已有书籍情况
+7. 用户可以借书籍（已借书籍不能重复借阅）
+8. 用户可以归还书籍
+9. 用户查询不到已经删除的书籍（不能借阅）
+10. 用户和管理员每次操作都查询mock上的书籍情况 并及时更新书籍情况
+
+---
+### 开发逻辑
+1. 基于dva、 antd、 react、 router、 redux开发SPA
+2. Axios 调用接口
+3. 使用vite-plugin-mock 模拟数据 
+4. list 接口使用restFul 风格； 用fs模块修改list.json
+5. sessionStorage 临时保存登陆状态和角色
+
+
+---
+### 最终实现
