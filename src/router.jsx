@@ -1,4 +1,6 @@
-import { createHashRouter, Navigate } from 'react-router-dom'
+import { createHashRouter, Navigate, } from 'react-router-dom'
+import Login from './pages/Login'
+import List from './pages/List'
 
 // 是否在登陆状态
 const isLogin = sessionStorage.getItem('isLogin')
@@ -6,10 +8,10 @@ const isLogin = sessionStorage.getItem('isLogin')
 const role = sessionStorage.getItem('role')
 
 const router = createHashRouter([
-  { path: '/', element: 'Login' },
-  { path: '/AdminBookList', element: 'AdminBookList' },
-  { path: '/UserBookList', element: 'UserBookList' },
-  { path: '*', element: <Navigate to={isLogin ? (role == 'Admin' ? '/AdminBookList' : '/UserBookList') : '/'} /> }
+  { path: '/', exact: true, element: <Login /> },
+  { path: '/AdminBookList', element: <List role="Admin" /> },
+  { path: '/UserBookList', element: <List role="User" /> },
+  { path: '*', element: <Navigate to={isLogin=='true' ? (role == 'Admin' ? '/AdminBookList' : '/UserBookList') : '/'} /> }
 
 ])
 

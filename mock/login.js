@@ -5,12 +5,13 @@ export default [
         response: ({ query }) => {
             const { username, password } = query
             switch (username) {
-                case 'alice': {
+                case 'Alice': {
                     if(password==1){
                         return {
                             code:200,
                             success:true,
-                            role:'admin'
+                            role:'Admin',
+                            username:'Alice'
                         }
                     }else{
                         return {
@@ -20,12 +21,13 @@ export default [
                         }
                     }
                 }
-                case 'bob': {
+                case 'Bob': {
                     if(password==2){
                         return {
                             code:200,
                             success:true,
-                            role:'user'
+                            role:'User',
+                            username:'Bob'
                         }
                     }else{
                         return {

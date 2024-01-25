@@ -22,6 +22,7 @@ export default [
         method: 'post',
         response: ({ query, body }) => {
             const { type } = query
+            const {params} = body
 
             // 读取文件内容（同步）
             const data = fs.readFileSync(filePath, 'utf8');
@@ -30,49 +31,54 @@ export default [
             switch (type) {
                 // 新增书籍
                 case 'create': {
-                    data.id = uuidv4() // 使用uuid来生成书籍id
-                    json.push(data)
-                    updateJson(filePath, json)
+                    const id = uuidv4() // 使用uuid来生成书籍id
+                    json.push({...params,id,allowDel:true})
+                    return updateJson(filePath, json)
                 }
                 // 删除
                 case 'delete': {
-                    const { id } = body
+                    const { id } = params
                     json = json.filter(item => item.id != id)
-                    updateJson(filePath, json)
+                    return updateJson(filePath, json)
                 }
                 // 更新库存
                 case 'update': {
-                    const { id, inventory } = body
+                    const { id } = params
                     json = json.map(item => {
                         if (item.id == id) {
-                            item.inventory = inventory
+                            return params
                         }
+                        return item
                     });
-                    updateJson(filePath, json)
+                    return updateJson(filePath, json)
                 }
                 // 借出
                 case 'lend': {
-                    const { id } = body
+                    const { id } = params
                     json = json.map(item => {
                         if (item.id == id) {
                             item.lended += 1
                         }
+                        return item
                     });
-                    updateJson(filePath, json)
+
+                    return  updateJson(filePath, json)
+                    
                 }
                 // 归还
                 case 'return': {
-                    const { id } = body
+                    const { id } = params
                     json = json.map(item => {
                         if (item.id == id) {
                             item.lended -= 1
                         }
+                        return item
                     });
-                    updateJson(filePath, json)
+                    return updateJson(filePath, json)
                 }
                 // 查看已借书籍
                 case 'view': {
-                    json = json.filter(item => item.lended=true);
+                    json = json.filter(item => item.lended>0);
                     return {
                         code: 200,
                         success: true,
@@ -83,7 +89,7 @@ export default [
                 default:
                     return {
                         code: 200,
-                        success: false,
+                        success: true,
                         data: list,
                     };
             }

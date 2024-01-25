@@ -1,0 +1,10 @@
+[
+  {
+    "name": "Clean Code",
+    "id": 1,
+    "allowDelete": false,
+    "inventory": 5,
+    "author": "Robert C.Martin",
+    "lended": 0
+  }
+]
