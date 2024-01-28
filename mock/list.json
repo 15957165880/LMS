@@ -6,5 +6,21 @@
     "inventory": 5,
     "author": "Robert C.Martin",
     "lended": 0
+  },
+  {
+    "name": "12",
+    "author": "12",
+    "inventory": 11,
+    "lended": 0,
+    "id": "23720f3a-74c2-4d3e-80d5-4c3a101e93b1",
+    "allowDel": true
+  },
+  {
+    "name": "ytut",
+    "author": "jhk",
+    "inventory": 78,
+    "lended": 0,
+    "id": "1558df6e-3fee-468e-9e9e-019f09e72adf",
+    "allowDel": true
   }
 ]
